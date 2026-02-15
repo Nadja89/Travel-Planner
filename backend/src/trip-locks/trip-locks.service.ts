@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common'; // Dodat Inject
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ClientProxy } from '@nestjs/microservices'; // Dodat ClientProxy
 
 import { TripLockEntity } from './entities/trip-lock.entity';
 import { CreateTripLockDto } from './dto/create-trip-lock.dto';
@@ -13,6 +14,9 @@ export class TripLocksService {
   constructor(
     @InjectRepository(TripLockEntity)
     private readonly repo: Repository<TripLockEntity>,
+    
+    @Inject('COMM_SERVICE') 
+    private readonly client: ClientProxy, 
   ) {}
 
   async create(dto: CreateTripLockDto): Promise<TripLock> {
@@ -25,7 +29,13 @@ export class TripLocksService {
 
     const entitet = TripLockMapper.toEntity(business);
     const saved = await this.repo.save(entitet);
-    return TripLockMapper.toDomain(saved);
+    
+    const domenskiObjekat = TripLockMapper.toDomain(saved);
+
+    //Obavestavamo ostale da je plan "zakljucan" 
+    this.client.emit('trip_locked', domenskiObjekat);
+
+    return domenskiObjekat;
   }
 
   async findAll(): Promise<TripLock[]> {
@@ -39,8 +49,17 @@ export class TripLocksService {
   }
 
   async remove(id: string): Promise<boolean> {
+    // Pre brisanja nalazimo lock da bismo znali koji je plan u pitanju
+    const entitet = await this.repo.findOne({ where: { id } });
+    
     const res = await this.repo.delete(id);
-    return (res.affected ?? 0) > 0;
+    const uspesno = (res.affected ?? 0) > 0;
+
+    if (uspesno && entitet) {
+      //Obavestavamo da je plan "otkljucan" 
+      this.client.emit('trip_unlocked', { tripPlanId: entitet.tripPlanId });
+    }
+
+    return uspesno;
   }
 }
-

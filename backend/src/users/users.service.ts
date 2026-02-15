@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common'; // Dodat Inject
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ClientProxy } from '@nestjs/microservices'; // Dodat ClientProxy
 
 import { UserEntity } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -14,6 +15,9 @@ export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly repo: Repository<UserEntity>,
+    
+    @Inject('COMM_SERVICE') 
+    private readonly client: ClientProxy, 
   ) {}
 
   async create(dto: CreateUserDto): Promise<User> {
@@ -29,7 +33,13 @@ export class UsersService {
 
     const entitet = UserMapper.toEntity(business);
     const sacuvan = await this.repo.save(entitet);
-    return UserMapper.toDomain(sacuvan);
+    
+    const domenskiObjekat = UserMapper.toDomain(sacuvan);
+    
+    //Obavestenje o registraciji novog korisnika
+    this.client.emit('user_created', domenskiObjekat);
+    
+    return domenskiObjekat;
   }
 
   async findAll(): Promise<User[]> {
@@ -54,11 +64,23 @@ export class UsersService {
     if (dto.lozinka !== undefined) entitet.lozinka = dto.lozinka;
 
     const sacuvan = await this.repo.save(entitet);
-    return UserMapper.toDomain(sacuvan);
+    const domenskiObjekat = UserMapper.toDomain(sacuvan);
+    
+    //Obavestenje o azuriranju profila
+    this.client.emit('user_updated', domenskiObjekat);
+    
+    return domenskiObjekat;
   }
 
   async remove(id: string): Promise<boolean> {
     const res = await this.repo.delete(id);
-    return (res.affected ?? 0) > 0;
+    const uspesno = (res.affected ?? 0) > 0;
+    
+    if (uspesno) {
+      //Obavestenje o brisanju naloga
+      this.client.emit('user_deleted', { userId: id });
+    }
+    
+    return uspesno;
   }
 }
