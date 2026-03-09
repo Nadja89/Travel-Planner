@@ -83,4 +83,21 @@ export class UsersService {
     
     return uspesno;
   }
+
+  async login(korisnickoIme: string, lozinka: string): Promise<User | null> {
+
+  const user = await this.repo.findOne({
+    where: { korisnickoIme }
+  });
+
+  if (!user) {
+    return null;
+  }
+
+  if (user.lozinka !== lozinka) {
+    return null;
+  }
+
+  return UserMapper.toDomain(user);
+}
 }

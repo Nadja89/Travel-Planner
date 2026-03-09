@@ -1,0 +1,194 @@
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:rgba(235, 232, 232, 0.721);
+  height:100vh;
+}
+
+
+.login-container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+
+.login-card{
+  display:flex;
+  width:1000px;
+  height:600px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#2c253a;
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* LEVA STRANA */
+
+.login-image{
+  width:50%;
+  position:relative;
+}
+
+.login-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.login-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+      rgba(109,79,170,0.20),
+      rgba(108,98,127,0.30)
+  );
+}
+
+/* DESNA STRANA */
+
+.login-form{
+  width:50%;
+  padding:60px 80px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  color:white;
+}
+
+/* NASLOVI */
+
+.login-form h1{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.login-form h2{
+  font-weight:300;
+  margin-bottom:35px;
+  color:#b9b9c9;
+}
+
+.login-form input{
+  width:100%;
+  padding:15px;
+  margin-bottom:18px;
+  border-radius:8px;
+  border:1px solid #4c3f63;
+  background:#3a314b;
+  color:white;
+  font-size:15px;
+  box-sizing:border-box;
+}
+
+.login-form input::placeholder{
+  color:#b7b2c6;
+}
+
+.login-form input:focus{
+  outline:none;
+  border:1px solid #7b61ff;
+}
+
+
+.password-field{
+  position:relative;
+  width:100%;
+}
+
+.password-field input{
+  width:100%;
+  padding:15px;
+  padding-right:50px;
+  margin-bottom:18px;
+  border-radius:8px;
+  border:1px solid #4c3f63;
+  background:#3a314b;
+  color:white;
+  font-size:15px;
+  box-sizing:border-box;
+}
+
+.eye-icon{
+  position:absolute;
+  right:16px;
+  top:35%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  font-size:20px;
+  color:#9b7dff;
+  transition:transform 0.2s ease;
+}
+
+
+
+.eye-icon:hover{
+  transform:translateY(-50%) scale(1.2);
+}
+
+/* DUGME */
+
+.login-form button{
+  width:100%;
+  padding:16px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(90deg,#7156f8,hsl(254, 81%, 75%));
+  color:white;
+  font-size:16px;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.login-form button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(123,97,255,0.4);
+}
+
+/* DONJI TEKST */
+
+.login-form p{
+  margin-top:20px;
+  font-size:14px;
+  color:#b9b9c9;
+}
+
+.login-form span{
+  color:#9b7dff;
+  cursor:pointer;
+}
+
+
+
+.page-transition{
+  animation: zoomFade 0.7s ease;
+}
+
+@keyframes zoomFade{
+  from{
+    opacity:0;
+    transform: scale(0.92);
+  }
+  to{
+    opacity:1;
+    transform: scale(1);
+  }
+}
+.logo{
+color:white;
+font-size:22px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+.trip-date{
+display:block;
+margin-top:6px;
+font-size:15px;
+opacity:0.9;
+}

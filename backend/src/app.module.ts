@@ -20,7 +20,7 @@ import { CommunicationController } from './communication/CommunicationController
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'postgre',
+      password: 'nadja',
       database: 'travel_planner',
       autoLoadEntities: true,
       synchronize: true,

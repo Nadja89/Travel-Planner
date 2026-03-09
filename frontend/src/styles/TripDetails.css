@@ -1,0 +1,252 @@
+.trip-page{
+min-height:100vh;
+background:rgba(235,232,232,0.72);
+padding-top:90px;
+}
+
+
+.trip-hero{
+height:260px;
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:flex-end;
+}
+
+.trip-hero-overlay{
+width:100%;
+padding:40px 60px;
+background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+color:white;
+}
+
+.trip-hero-overlay h1{
+font-size:38px;
+margin-bottom:6px;
+}
+
+.trip-meta{
+opacity:0.9;
+}
+
+
+
+.trip-content{
+padding:40px 60px;
+}
+
+.trip-tabs{
+display:flex;
+gap:10px;
+margin-bottom:30px;
+}
+
+.tab{
+border:none;
+padding:10px 18px;
+border-radius:30px;
+background:#eaeaea;
+cursor:pointer;
+}
+
+.tab.active{
+background:linear-gradient(90deg,#7156f8,#a48bff);
+color:white;
+}
+
+/* HEADER */
+
+.activities-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+/* dugme za dodavanje aktivnosti */
+
+.add-activity-btn{
+padding:16px 36px;
+border:none;
+border-radius:40px;
+background:linear-gradient(90deg,#7156f8,#a48bff);
+color:white;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+}
+
+/* timeline */
+
+.day-section{
+margin-bottom:30px;
+}
+
+.day-title{
+font-size:22px;
+margin-bottom:10px;
+}
+
+/* aktivnosti */
+
+.activity-card{
+display:flex;
+justify-content:space-between;
+background:white;
+padding:20px;
+border-radius:14px;
+margin-bottom:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+.activity-name{
+font-weight:600;
+}
+
+.activity-time{
+font-size:14px;
+color:#777;
+}
+
+.activity-desc{
+font-size:14px;
+margin-top:4px;
+color:#555;
+}
+
+.activity-actions{
+display:flex;
+gap:8px;
+}
+
+/* izmena */
+
+.edit-btn{
+background:#7156f8;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* brisanje */
+
+.delete-btn{
+background:#ff6b6b;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* clanovi */
+
+.members-list{
+display:flex;
+flex-direction:column;
+gap:18px;
+margin-top:20px;
+}
+
+.member-card{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.member-avatar{
+width:44px;
+height:44px;
+border-radius:50%;
+background:linear-gradient(90deg,#7156f8,#a48bff);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+.member-role{
+font-size:13px;
+color:#777;
+}
+
+/* modal */
+
+.activity-modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.activity-modal-box{
+background:white;
+padding:30px;
+border-radius:16px;
+width:420px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.activity-modal-box input,
+.activity-modal-box textarea{
+padding:10px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.modal-buttons{
+display:flex;
+gap:10px;
+justify-content:flex-end;
+}
+
+.save-btn{
+background:linear-gradient(90deg,#7156f8,#a48bff);
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.cancel-btn{
+background:#ddd;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.activity-title{
+display:flex;
+align-items:center;
+gap:8px;
+margin-bottom:4px;
+}
+
+.activity-actions{
+display:flex;
+gap:8px;
+}
+
+.activity-modal-box input,
+.activity-modal-box textarea,
+.activity-modal-box select{
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:14px;
+background:white;
+width:100%;
+box-sizing:border-box;
+}
