@@ -14,7 +14,7 @@ export class TripLockEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  
+  // Relacija ka planu puta
   @ManyToOne(() => TripPlanEntity, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'tripPlanId' })
   plan: TripPlanEntity;
@@ -22,6 +22,7 @@ export class TripLockEntity {
   @Column({ type: 'uuid', unique: true })
   tripPlanId: string;
 
+  
   @ManyToOne(() => UserEntity, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'userId' })
   korisnik: UserEntity;
@@ -29,7 +30,7 @@ export class TripLockEntity {
   @Column({ type: 'uuid' })
   userId: string;
 
+  // Automatsko beleženje vremena kada je zaključano
   @CreateDateColumn({ type: 'timestamptz' })
   zakljucanoU: Date;
 }
-

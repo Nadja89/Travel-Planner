@@ -1,30 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Delete } from '@nestjs/common';
 import { TripLocksService } from './trip-locks.service';
-import { CreateTripLockDto } from './dto/create-trip-lock.dto';
-import { UpdateTripLockDto } from './dto/update-trip-lock.dto';
 
 @Controller('trip-locks')
 export class TripLocksController {
-  constructor(private readonly tripLocksService: TripLocksService) {}
+  constructor(private readonly service: TripLocksService) {}
 
   @Post()
-  create(@Body() createTripLockDto: CreateTripLockDto) {
-    return this.tripLocksService.create(createTripLockDto);
+  lockTrip(@Body() body: { tripPlanId: string; userId: string }) {
+    const result = this.service.tryLock(body.tripPlanId, body.userId);
+    if (!result.success) return { success: false, lockedBy: result.lockedBy };
+    return { success: true, message: 'Zaključano' };
   }
 
-  @Get()
-  findAll() {
-    return this.tripLocksService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tripLocksService.findOne(id);
-  }
-
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tripLocksService.remove(id);
+  @Delete()
+  unlockTrip(@Body() body: { tripPlanId: string; userId: string }) {
+    this.service.unlock(body.tripPlanId, body.userId);
+    return { message: 'Otključano' };
   }
 }
