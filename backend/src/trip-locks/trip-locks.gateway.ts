@@ -55,4 +55,9 @@ export class TripLocksGateway implements OnGatewayInit, OnGatewayConnection, OnG
   getLock(tripPlanId: string): string | undefined {
     return this.locks[tripPlanId];
   }
+  @SubscribeMessage('update_activities')
+  handleUpdateActivities(@MessageBody() data: { tripPlanId: string }, @ConnectedSocket() client: Socket) {
+      this.server.to(data.tripPlanId).emit('activities_updated');
+      console.log(`Socket: Aktivnosti ažurirane za plan ${data.tripPlanId}`);
+  }
 }

@@ -9,5 +9,6 @@ import { TripLocksGateway } from './trip-locks.gateway';
   imports: [TypeOrmModule.forFeature([TripLockEntity])],
   controllers: [TripLocksController],
   providers: [TripLocksService, TripLocksGateway],
+  exports: [TripLocksGateway],
 })
 export class TripLocksModule {}
