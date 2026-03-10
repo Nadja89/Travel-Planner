@@ -6,6 +6,7 @@ function Navbar(){
 
 const [open,setOpen] = useState(false);
 const [showLogout,setShowLogout] = useState(false);
+const [showDelete,setShowDelete] = useState(false);
 
 const navigate = useNavigate();
 
@@ -23,11 +24,43 @@ navigate("/");
 };
 
 
+const deleteAccount = async () =>{
+
+try{
+
+const res = await fetch(`http://localhost:3001/users/${user.id}`,{
+method:"DELETE"
+});
+
+if(res.ok){
+
+localStorage.removeItem("user");
+navigate("/");
+
+}else{
+
+alert("Greška pri brisanju naloga");
+
+}
+
+}catch(err){
+
+console.error(err);
+
+}
+
+};
+
+
 return(
 
 <div className="navbar">
 
-<div className="logo">
+<div 
+className="logo"
+onClick={()=>navigate("/home")}
+style={{cursor:"pointer"}}
+>
 Travel Planner
 </div>
 
@@ -58,6 +91,18 @@ Logout
 
 </div>
 
+<div
+className="dropdown-item delete"
+onClick={()=>{
+setShowDelete(true);
+setOpen(false);
+}}
+>
+
+Deaktiviraj nalog
+
+</div>
+
 </div>
 
 )}
@@ -85,6 +130,39 @@ Odjavi se
 <button
 className="logout-cancel"
 onClick={()=>setShowLogout(false)}
+>
+Otkaži
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+)}
+
+
+{showDelete && (
+
+<div className="logout-modal">
+
+<div className="logout-box">
+
+<h3>Da li želite da deaktivirate nalog?</h3>
+
+<div className="logout-buttons">
+
+<button
+className="logout-confirm"
+onClick={deleteAccount}
+>
+Deaktiviraj
+</button>
+
+<button
+className="logout-cancel"
+onClick={()=>setShowDelete(false)}
 >
 Otkaži
 </button>

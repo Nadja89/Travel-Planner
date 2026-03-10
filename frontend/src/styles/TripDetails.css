@@ -1,12 +1,12 @@
 .trip-page{
 min-height:100vh;
 background:rgba(235,232,232,0.72);
-padding-top:90px;
+padding-top:0px;
 }
 
 
 .trip-hero{
-height:260px;
+height:400px;
 background-size:cover;
 background-position:center;
 display:flex;
@@ -160,7 +160,7 @@ gap:14px;
 width:44px;
 height:44px;
 border-radius:50%;
-background:linear-gradient(90deg,#7156f8,#a48bff);
+background:linear-gradient(90deg,#ff7a00,#ffa500);
 color:white;
 display:flex;
 align-items:center;
@@ -249,4 +249,82 @@ font-size:14px;
 background:white;
 width:100%;
 box-sizing:border-box;
+}
+
+.leave-trip-btn{
+margin-top:16px;
+padding:12px 28px;
+border:none;
+border-radius:40px;
+background:linear-gradient(90deg,#7156f8,#a48bff);
+color:white;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.leave-trip-btn:hover{
+transform:translateY(-2px);
+}
+
+.trip-map-section{
+margin-top:60px;
+}
+
+.trip-map-section h2{
+margin-bottom:20px;
+font-size:24px;
+}
+
+.lock-banner{
+position:fixed;
+top:90px;
+right:20px;
+
+background:linear-gradient(135deg,#7b61ff,#a78bfa);
+color:white;
+
+padding:14px 22px;
+border-radius:12px;
+
+font-weight:500;
+font-size:14px;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+
+z-index:9999;
+
+animation:slideIn 0.3s ease;
+}
+
+
+@keyframes slideIn{
+from{
+transform:translateX(120%);
+opacity:0;
+}
+to{
+transform:translateX(0);
+opacity:1;
+}
+}
+
+.delete-trip-btn{
+  padding:8px 16px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(90deg,#7156f8,#a48bff);
+  color:white;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  margin-top:12px;
+  width: auto; 
+  align-self: flex-start;
+  transition:0.3s;
+}
+
+.delete-trip-btn:hover{
+  transform:translateY(-2px);
 }

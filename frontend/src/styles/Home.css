@@ -18,6 +18,7 @@ font-size:34px;
 font-weight:700;
 color:#2e2e2e;
 margin: 10px;
+padding: 10px;
 
 }
 
@@ -250,24 +251,24 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.5);
 display:flex;
 justify-content:center;
 align-items:center;
-backdrop-filter:blur(6px);
 z-index:100;
 }
 
 .create-trip-box{
-background:linear-gradient(135deg,#2c2438,#3a314b);
-padding:40px;
-border-radius:20px;
+background:white;
+padding:30px;
+border-radius:16px;
 width:420px;
 display:flex;
 flex-direction:column;
-color:white;
-box-shadow:0 20px 40px rgba(0,0,0,0.3);
+gap:12px;
 }
+
+
 
 .create-trip-box h2{
 text-align:center;
@@ -278,24 +279,32 @@ font-weight:500;
 .create-trip-box input,
 .create-trip-box textarea{
 padding:12px;
-border:1px solid #4c3f63;
-border-radius:6px;
-background:#3a314b;
-color:white;
-margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:14px;
+background:white;
+width:100%;
+box-sizing:border-box;
 }
 
 .create-buttons{
 display:flex;
 gap:10px;
+justify-content:flex-end;
 }
 
 .create-buttons button{
-flex:1;
-padding:12px;
+padding:10px 16px;
 border:none;
 border-radius:8px;
-background:linear-gradient(90deg,#7156f8,hsl(254,81%,75%));
-color:white;
 cursor:pointer;
+}
+
+.create-buttons button:first-child{
+background:linear-gradient(90deg,#7156f8,#a48bff);
+color:white;
+}
+
+.create-buttons button:last-child{
+background:#ddd;
 }
